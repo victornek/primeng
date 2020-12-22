@@ -1250,7 +1250,7 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
         }
 
         this.filterTimeout = setTimeout(() => {
-            this._filter();
+            this._filter(true);
             this.filterTimeout = null;
         }, this.filterDelay);
 
@@ -1271,7 +1271,7 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
         return true;
     }
 
-    _filter() {
+    _filter(resetScroll) {
         if (!this.restoringFilter) {
             this.first = 0;
             this.firstChange.emit(this.first);
@@ -1383,7 +1383,8 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
 
         this.cd.markForCheck();
 
-        if (this.scrollable) {
+        if (this.scrollable && resetScroll) {
+            // reset scrolling only when this call is initiated by filter event
             this.resetScrollTop();
         }
     }
