@@ -1268,7 +1268,7 @@ export class Table implements OnInit, AfterViewInit, AfterContentInit, Blockable
         return true;
     }
 
-    _filter(resetScroll) {
+    _filter(resetScroll = false) {
         if (!this.restoringFilter) {
             this.first = 0;
             this.firstChange.emit(this.first);
